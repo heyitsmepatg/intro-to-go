@@ -19,6 +19,12 @@ type Hacker struct {
 	// This data structure is sad!
 }
 
+// Hackers is a struct which contains
+// an array of Hacker
+type Hackers struct {
+	// This data structure is equally sad!
+}
+
 // GetAllHackers basic GET api endpoint
 func GetAllHackers(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "GetAllHackers is not implemented yet !")
@@ -29,6 +35,7 @@ func GetHackerByID(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "GetHackerByID is not implemented yet !")
 }
 
+// The main function is the starting point for any go program.
 func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/hackers", GetAllHackers).Methods("GET")
