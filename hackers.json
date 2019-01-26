@@ -3,12 +3,12 @@
       {
         "name": "Madison",
         "id": 1,
-        "favorite-language": "Python"
+        "favorite-language": "C"
       },
       {
         "name": "Ethan",
         "id": 2,
-        "favorite-language": "C"
+        "favorite-language": "Python"
       },
       {
         "name": "Patrick",
