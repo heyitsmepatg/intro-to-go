@@ -32,12 +32,13 @@ type Hackers struct {
 }
 
 // getHackers reads a local JSON file and returns all hackers
-func getHackers() Hackers {
+func getHackers() (Hackers, error) {
 	// Open our json
 	jsonFile, err := os.Open("hackers.json")
 	// if we os.Open returns an error then handle it
 	if err != nil {
 		fmt.Println(err)
+		return Hackers{}, err
 	}
 	// defer the closing of our jsonFile so that we can parse it later on
 	defer jsonFile.Close()
@@ -59,12 +60,16 @@ func getHackers() Hackers {
 
 	fmt.Println(hackers)
 
-	return hackers
+	return hackers, nil
 }
 
 // GetAllHackers basic GET api endpoint
 func GetAllHackers(w http.ResponseWriter, r *http.Request) {
-	hackers := getHackers()
+	hackers, err := getHackers()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	jsonResponse, err := json.Marshal(hackers)
 	if err != nil {
@@ -86,7 +91,11 @@ func GetHackerByID(w http.ResponseWriter, r *http.Request) {
 	// 3.) Converting the value from a string to integer so we can compare with the Hacker.ID
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
-	hackers := getHackers()
+	hackers, err := getHackers()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 
 	for _, hacker := range hackers.Hackers {
 		if hacker.ID == id {
