@@ -1,0 +1,19 @@
+{
+    "hackers": [
+      {
+        "name": "Madison",
+        "id": 1,
+        "favoriteLanguage": "Python"
+      },
+      {
+        "name": "Ethan",
+        "id": 2,
+        "favoriteLanguage": "C"
+      },
+      {
+        "name": "Patrick",
+        "id": 3,
+        "favoriteLanguage": "Go"
+      }
+    ]
+  }
